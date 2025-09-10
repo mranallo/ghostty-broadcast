@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Ghostty Broadcast - Send commands to all open Ghostty tabs
+# Usage: ./ghostty-broadcast "command to send"
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 \"command to broadcast\""
+    echo "Example: $0 \"echo 'Hello from all tabs'\""
+    exit 1
+fi
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Run the AppleScript with the provided command
+osascript "$SCRIPT_DIR/ghostty-broadcast.applescript" "$1"
